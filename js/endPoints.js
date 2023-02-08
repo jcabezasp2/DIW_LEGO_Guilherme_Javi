@@ -11,6 +11,24 @@ export const getSets = async (pagina, cantidad) => {
     }
 }
 
+// Funcion para obtener las piezas
+export const getPieces = async (pagina, cantidad) => {
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/parts/?page=${pagina}&page_size=${cantidad}&key=${key}`);
+    if(!res.ok){
+        return false;
+    }else{
+        const piece = await res.json();
+        return piece;
+    }
+}
+
+// Funcion para obtener una pieza
+export const getPiece = async (id) => {
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/parts/${id}/?key=${key}`);
+    const piece = await res.json();
+    return piece;
+}
+
 // Funcion para obtener un set
 export const getSet = async (id) => {
     const res = await fetch(`https://rebrickable.com/api/v3/lego/sets/${id}/?key=${key}`);

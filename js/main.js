@@ -27,6 +27,9 @@ function init(){
         set.addEventListener('click', createSetPage);
     });
 
+    piezas.forEach(pieza => {
+        pieza.addEventListener('click', createPiecePage);
+    });
 
 }
 
@@ -46,6 +49,21 @@ async function createSetPage(){
     }else{
         sets.results.forEach(set => {
             createSetCard(set);
+        });
+    }
+}
+
+async function createPiecePage(){
+    cleanContainer();
+    let pieces = await endPoints.getPieces(10, 10);
+
+    container.classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
+
+    if(pieces === false){
+        showError('Error al obtener las piezas');
+    }else{
+        pieces.results.forEach(piece => {
+            createPieceCard(piece);
         });
     }
 }
@@ -85,6 +103,25 @@ async function createSetCard(set){
 
     container.appendChild(clon);
 }
+
+async function createPieceCard(piece){
+
+    let template = document.querySelector('#card-set').content;
+
+    let clon = template.cloneNode(true);
+
+    //image
+        clon.querySelector('img').src = piece.part_img_url;
+        clon.querySelector('img').alt = piece.name;
+    //name
+        clon.querySelector('.title').textContent = piece.name;
+    
+        clon.querySelector('.year').textContent = piece.year;
+
+        clon.querySelector('.num_parts').textContent = piece.num_parts;
+
+    container.appendChild(clon);
+}        
 
 function showError(mensaje){
 
