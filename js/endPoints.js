@@ -28,6 +28,13 @@ export const getThemes = async (pagina, cantidad) => {
     return theme;
 }
 
+// Funcion para obtener un tema
+export const getTheme = async (id) => {
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/themes/${id}/?key=${key}`);
+    const theme = await res.json();
+    return theme;
+}
+
 // Funcion para obtener el token
 export const getToken = async () => {
 
