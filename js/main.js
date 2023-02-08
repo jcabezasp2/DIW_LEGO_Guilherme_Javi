@@ -8,14 +8,11 @@ const inicio = document.querySelector('#inicio');
 const sets = document.querySelector('#sets');
 const piezas = document.querySelector('#piezas');
 const logo = document.querySelector('#logo');
+const modal = document.querySelector('#modal');
 
 window.addEventListener('load', init);
 
-console.log(await endPoints.getThemes(1, 20));
-
 function init(){
-
-    createSetPage();
 
     inicio.addEventListener('click', ()=>{
         location.reload();
@@ -29,8 +26,6 @@ function init(){
 
 }
 
-
-
 function cleanContainer(){
     
     container.innerHTML = '';
@@ -39,17 +34,19 @@ function cleanContainer(){
 async function createSetPage(){
     cleanContainer();
     let sets = await endPoints.getSets(1, 10);
-    console.log(sets)
-    // TODO gestion de errores
-    sets.results.forEach(set => {
-        createSetCard(set);
-    });
 
+    if(sets === false){
+        showError('Error al obtener los sets');
+    }else{
+        sets.results.forEach(set => {
+            createSetCard(set);
+        });
+    }
 }
 
 async function createSetCard(set){
-
-    let template = document.querySelector('#card').content;
+console.log(set)
+    let template = document.querySelector('#card-set').content;
 
     let clon = template.cloneNode(true);
 
@@ -67,4 +64,8 @@ async function createSetCard(set){
         clon.querySelector('.theme_id').textContent = themeName.name;
 
     container.appendChild(clon);
+}
+
+function showError(mensaje){
+
 }

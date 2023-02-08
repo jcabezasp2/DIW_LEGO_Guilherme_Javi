@@ -3,8 +3,12 @@ const key = 'd9a4c4eb34a74edecf0e9de8c380ee94';
 // Función para obtener los sets
 export const getSets = async (pagina, cantidad) => {
     const res = await fetch(`https://rebrickable.com/api/v3/lego/sets/?page=${pagina}&page_size=${cantidad}&key=${key}`);
-    const set = await res.json();
-    return set;
+    if(!res.ok){
+        return false;
+    }else{
+        const set = await res.json();
+        return set;
+    }
 }
 
 // Funcion para obtener un set
