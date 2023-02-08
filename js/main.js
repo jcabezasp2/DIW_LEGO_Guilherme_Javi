@@ -18,8 +18,10 @@ function init(){
         location.reload();
     })
 
-    sets.addEventListener('click', ()=>{
+    sets.addEventListener('click', (event)=>{
+        event.preventDefault();
         createSetPage();
+
     });
 
 
