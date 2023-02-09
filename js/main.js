@@ -36,13 +36,17 @@ function init(){
 function cleanContainer(){
     
     container.innerHTML = '';
+    let div = document.createElement('div');
+    div.setAttribute('id', 'coleccion');
+    container.appendChild(div);
+
 }
 
 async function createSetPage(){
     cleanContainer();
     let sets = await endPoints.getSets(1, 10);
 
-    container.classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
+    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
 
     if(sets === false){
         showError('Error al obtener los sets');
@@ -56,8 +60,7 @@ async function createSetPage(){
 async function createPiecePage(){
     cleanContainer();
     let pieces = await endPoints.getPieces(10, 10);
-
-    container.classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
+    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
 
     if(pieces === false){
         showError('Error al obtener las piezas');
@@ -101,7 +104,7 @@ async function createSetCard(set){
             
         })
 
-    container.appendChild(clon);
+        document.querySelector('#coleccion').appendChild(clon);
 }
 
 async function createPieceCard(piece){
@@ -127,7 +130,7 @@ async function createPieceCard(piece){
         btn.remove();
 
 
-    container.appendChild(clon);
+        document.querySelector('#coleccion').appendChild(clon);
 }        
 
 function showError(mensaje){
