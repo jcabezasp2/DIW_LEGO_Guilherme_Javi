@@ -118,7 +118,14 @@ async function createPieceCard(piece){
     
         clon.querySelector('.year').textContent = piece.year;
 
-        clon.querySelector('.num_parts').textContent = piece.num_parts;
+        clon.querySelector('.num_parts').remove();
+
+        clon.querySelector('.theme_id').remove();        
+
+        let btn = clon.querySelector('.anadir_set_coleccion');
+        
+        btn.remove();
+
 
     container.appendChild(clon);
 }        
