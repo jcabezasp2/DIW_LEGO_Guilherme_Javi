@@ -104,9 +104,9 @@ async function createSetCard(set){
     //name
         clon.querySelector('.title').textContent = set.name;
     //year
-        clon.querySelector('.year').textContent = set.year;
+        clon.querySelector('.year').textContent = "Año de lanzamiento: " + set.year;
     //num_parts
-        clon.querySelector('.num_parts').textContent = set.num_parts;
+        clon.querySelector('.num_parts').textContent = "Número de piezas: " + set.num_parts;
     //theme_id
         let themeName = await endPoints.getTheme(set.theme_id);
         clon.querySelector('.theme_id').textContent = themeName.name;
@@ -140,7 +140,7 @@ async function createPieceCard(piece){
     //name
         clon.querySelector('.title').textContent = piece.name;
     
-        clon.querySelector('.year').textContent = piece.year;
+        clon.querySelector('.year').remove();
 
         clon.querySelector('.num_parts').remove();
 
