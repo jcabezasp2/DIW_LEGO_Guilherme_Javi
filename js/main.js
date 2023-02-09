@@ -73,7 +73,7 @@ async function createSetCard(set){
     let template = document.querySelector('#card-set').content;
 
     let clon = template.cloneNode(true);
-
+ 
     //image
         clon.querySelector('img').src = set.set_img_url;
         clon.querySelector('img').alt = set.name;
