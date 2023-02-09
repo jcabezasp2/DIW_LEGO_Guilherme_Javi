@@ -10,6 +10,7 @@ const sets = document.querySelectorAll('.sets');
 const piezas = document.querySelectorAll('.piezas');
 const logo = document.querySelector('#logo');
 const modal = document.querySelector('#modal');
+const perdidas = document.querySelectorAll('.perdidas');
 
 window.addEventListener('load', init);
 
@@ -29,6 +30,10 @@ function init(){
 
     piezas.forEach(pieza => {
         pieza.addEventListener('click', createPiecePage);
+    });
+
+    perdidas.forEach(perdida => {
+        perdida.addEventListener('click', createLostPiecePage);
     });
 
 }
@@ -69,6 +74,22 @@ async function createPiecePage(){
             createPieceCard(piece);
         });
     }
+}
+
+async function createLostPiecePage(){
+    
+    cleanContainer();
+    let pieces = await endPoints.getAllUserLostParts(1, 10);
+    //TODO implementar error en endpoint
+    if(pieces === false){
+        showError('Error al obtener las piezas');
+    }else{
+        pieces.results.forEach(piece => {
+            createPieceCard(piece);
+        });
+    }
+
+
 }
 
 async function createSetCard(set){
@@ -131,7 +152,8 @@ async function createPieceCard(piece){
 
 
         document.querySelector('#coleccion').appendChild(clon);
-}        
+} 
+
 
 function showError(mensaje){
 
