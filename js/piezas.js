@@ -4,8 +4,8 @@ import * as endPoints from './endPoints.js';
 
 export async function createPiecePage(){
     cleanContainer();
-    let pieces = await endPoints.getPieces(10, 10);
-    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
+    let pieces = await endPoints.getPieces(10, 12);
+    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
     if(pieces === false){
         showError('Error al obtener las piezas');

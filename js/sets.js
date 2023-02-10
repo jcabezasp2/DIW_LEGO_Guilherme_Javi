@@ -5,9 +5,9 @@ import * as endPoints from './endPoints.js';
 
 export async function createSetPage(){
     cleanContainer();
-    let sets = await endPoints.getSets(1, 10);
+    let sets = await endPoints.getSets(1, 12);
 
-    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-4', 'row-cols-lg-5', 'g-2');
+    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
     if(sets === false){
         showError('Error al obtener los sets');
