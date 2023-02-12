@@ -1,13 +1,21 @@
-import { cleanContainer, showSuccess, showError } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger} from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
-export async function createSetPage(){
-    cleanContainer();
-    let sets = await endPoints.getSets(1, 12);
+export async function initSetPage(){
+    createSetPage();
+}
 
-    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
+export async function createSetPage(selected = 1){
+    cleanContainer();
+    const resultadosPorPagina = 12;
+    let coleccion = document.querySelector('#coleccion');
+    coleccion.dataset.actualPage = selected;
+    coleccion.dataset.type = 'sets';
+    let sets = await endPoints.getSets(selected, resultadosPorPagina);
+
+    coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
     if(sets === false){
         showError('Error al obtener los sets');
@@ -15,6 +23,7 @@ export async function createSetPage(){
         sets.results.forEach(set => {
             createSetCard(set);
         });
+        createPaginator(selected);     
     }
 }
 

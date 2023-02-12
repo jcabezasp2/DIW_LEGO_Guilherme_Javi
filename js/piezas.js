@@ -1,11 +1,22 @@
-import { cleanContainer, showSuccess, showError } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger } from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
-export async function createPiecePage(){
+
+export async function initPiecePage(){
+    createPiecePage();
+}
+
+export async function createPiecePage(selected = 10){
     cleanContainer();
-    let pieces = await endPoints.getPieces(10, 12);
-    document.querySelector('#coleccion').classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
+
+    let coleccion = document.querySelector('#coleccion');
+    coleccion.dataset.actualPage = selected;
+    coleccion.dataset.type = 'pieces';
+
+    const resultadosPorPagina = 12;
+    let pieces = await endPoints.getPieces(selected, resultadosPorPagina);
+    coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
     if(pieces === false){
         showError('Error al obtener las piezas');
@@ -13,6 +24,7 @@ export async function createPiecePage(){
         pieces.results.forEach(piece => {
             createPieceCard(piece);
         });
+        createPaginator(selected);
     }
 }
 

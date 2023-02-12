@@ -1,11 +1,21 @@
 import * as htmlConstants from './htmlConstants.js';
-import { cleanContainer, showSuccess, showError } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator } from "./utils.js";
 import * as endPoints from './endPoints.js';
+import { initPiecePage } from './piezas.js';
 
-export async function createLostPiecePage(){
+
+export async function initLostPiecePage(){
+    createLostPiecePage();
+}
+
+export async function createLostPiecePage( selected = 1){
     
     cleanContainer();
-    let pieces = await endPoints.getAllUserLostParts(1, 10);
+    const resultadosPorPagina = 12;
+    let coleccion = document.querySelector('#coleccion');
+    coleccion.dataset.actualPage = selected;
+    coleccion.dataset.type = 'lostPieces';
+    let pieces = await endPoints.getAllUserLostParts(selected, resultadosPorPagina);
     //TODO implementar error en endpoint
     if(pieces === false){
         showError('Error al obtener las piezas');
@@ -13,6 +23,7 @@ export async function createLostPiecePage(){
         pieces.results.forEach(piece => {
             createPieceCard(piece);
         });
+        createPaginator(selected);
     }
 }
 
