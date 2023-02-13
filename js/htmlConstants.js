@@ -6,3 +6,4 @@ export const piezas = document.querySelectorAll('.piezas');
 export const logo = document.querySelector('#logo');
 export const modal = document.querySelector('#modal');
 export const perdidas = document.querySelectorAll('.perdidas');
+export const misets = document.querySelectorAll('.misets');

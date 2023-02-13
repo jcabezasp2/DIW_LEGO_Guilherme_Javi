@@ -3,6 +3,7 @@ import * as endPoints from './endPoints.js';
 import * as setsFunctions from './sets.js';
 import * as piecesFunctions from './piezas.js';
 import * as personalFunctions from './lostPieces.js';
+import * as mySetsFunctions from './mySets.js';
 //Ejemplo de llamada a un endpoint
 //console.log(await endPoints.getThemes(1, 10));
 
@@ -28,6 +29,10 @@ function init(){
 
     htmlConstants.perdidas.forEach(perdida => {
         perdida.addEventListener('click', personalFunctions.initLostPiecePage);
+    });
+
+    htmlConstants.misets.forEach( misets => {
+        misets.addEventListener('click', mySetsFunctions.initMySetsPage);
     });
 
 }
