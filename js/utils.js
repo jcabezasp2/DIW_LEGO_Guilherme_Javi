@@ -1,6 +1,6 @@
 import * as htmlConstants from './htmlConstants.js';
 import {createSetPage} from './sets.js';
-import {createPiecePage} from './piezas.js';
+import {createPiecePage} from './pieces.js';
 
 export function cleanContainer(){
     
@@ -16,7 +16,7 @@ export function showError(mensaje){
     let div = document.createElement('div');
     div.setAttribute('role', 'alert');
     div.setAttribute('id', 'alert');
-    div.classList.add('alert', 'alert-danger');
+    div.classList.add('alert', 'alert-danger', 'position-absolute', 'top-50', 'start-50', 'p-5');
     div.textContent = mensaje;
     htmlConstants.container.appendChild(div);
 
@@ -31,7 +31,7 @@ export function showSuccess(mensaje){
     let div = document.createElement('div');
     div.setAttribute('role', 'alert');
     div.setAttribute('id', 'alert');
-    div.classList.add('alert', 'alert-success');
+    div.classList.add('alert', 'alert-success', 'position-absolute', 'top-50', 'start-50', 'p-5');
     div.textContent = mensaje;
     htmlConstants.container.appendChild(div);
 
@@ -133,4 +133,14 @@ export function pageChanger(event){
         default:
             showError('Error al cambiar de página');
     }
+}
+
+export async function datalistCharger(data){
+    htmlConstants.datalistOptions.innerHTML = '';
+    data.results.forEach(element => {
+        let option = document.createElement('option');
+        option.value = element.name;
+        option.dataset.id = element.id;
+        htmlConstants.datalistOptions.appendChild(option);
+    });
 }

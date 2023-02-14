@@ -1,10 +1,15 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, datalistCharger } from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
 export async function initPiecePage(){
     createPiecePage();
+    createMenu();
+    coleccion.dataset.selected = 'todos';
+    htmlConstants.selected.addEventListener('change', (event)=>{
+        coleccion.dataset.selected = event.target.value;
+    });
 }
 
 export async function createPiecePage(selected = 10){
@@ -53,4 +58,11 @@ export async function createPieceCard(piece){
 
         document.querySelector('#coleccion').appendChild(clon);
 } 
+
+
+async function createMenu(){
+    htmlConstants.internalMenu.classList.remove('d-none');
+    let themes = await endPoints.getAllThemes();
+    datalistCharger(themes);
+}
 

@@ -31,7 +31,7 @@ export async function createMySetsPage(selected = 1){
 export async function createMySetCard( miset){
     let template = document.querySelector('#card-set').content;
     let clon = template.cloneNode(true);
-
+    console.log(miset)
     //image
     clon.querySelector('img').src = miset.set_img_url;
     clon.querySelector('img').alt = miset.name;

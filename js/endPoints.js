@@ -50,6 +50,13 @@ export const getThemes = async (pagina, cantidad) => {
     return theme;
 }
 
+// Funcion para obtener todos los temas
+export const getAllThemes = async () => {
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/themes/?key=${key}`);
+    const theme = await res.json();
+    return theme;
+}
+
 // Funcion para obtener un tema
 export const getTheme = async (id) => {
     const res = await fetch(`https://rebrickable.com/api/v3/lego/themes/${id}/?key=${key}`);
@@ -107,10 +114,8 @@ export const setLostPart = async (id) => {
         };
 
         const res = await fetch(`https://rebrickable.com/api/v3/users/${token}/lost_parts/`, opciones);
-        if(!res.ok) throw new Error(res.status);
-
-        const set = await res.json();
-        return set;
+        if(!res.ok) throw new Error(res.status);;
+        return res;
     }
 
 // Funcion para eliminar una pieza perdida de un usuario

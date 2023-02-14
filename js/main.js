@@ -1,9 +1,10 @@
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 import * as setsFunctions from './sets.js';
-import * as piecesFunctions from './piezas.js';
+import * as piecesFunctions from './pieces.js';
 import * as personalFunctions from './lostPieces.js';
 import * as mySetsFunctions from './mySets.js';
+import * as myPiecesFunctions from './myPieces.js';
 //Ejemplo de llamada a un endpoint
 //console.log(await endPoints.getThemes(1, 10));
 
@@ -33,6 +34,10 @@ function init(){
 
     htmlConstants.misets.forEach( misets => {
         misets.addEventListener('click', mySetsFunctions.initMySetsPage);
+    });
+
+    htmlConstants.myPieces.forEach( myPieces => {
+        myPieces.addEventListener('click', myPiecesFunctions.initMyPiecePage);
     });
 
 }
