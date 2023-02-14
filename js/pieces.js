@@ -40,8 +40,15 @@ export async function createPieceCard(piece){
     let clon = template.cloneNode(true);
 
     //image
+    
+    if(piece.part_img_url != null){
+
         clon.querySelector('img').src = piece.part_img_url;
         clon.querySelector('img').alt = piece.name;
+        }else{
+        clon.querySelector('img').src = "img/pieza.png";
+        
+        }
     //name
         clon.querySelector('.title').textContent = piece.name;
     
