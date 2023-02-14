@@ -33,14 +33,14 @@ export async function createMySetCard( miset){
     let clon = template.cloneNode(true);
     console.log(miset)
     //image
-    clon.querySelector('img').src = miset.set_img_url;
-    clon.querySelector('img').alt = miset.name;
+    clon.querySelector('img').src = miset.set.set_img_url;
+    clon.querySelector('img').alt = miset.set.name;
     //name
-    clon.querySelector('.title').textContent =  miset.name;
+    clon.querySelector('.title').textContent =  miset.set.name;
     //year
-    clon.querySelector('.year').textContent =  miset.year;
+    clon.querySelector('.year').textContent = "Año de lanzamiento: " + miset.set.year;
     //num_parts
-    clon.querySelector('.num_parts').textContent =  miset.num_parts;
+    clon.querySelector('.num_parts').textContent = "Número de piezas: " + miset.set.num_parts;
     //theme_id
     clon.querySelector('.theme_id').remove();     
     //btn
