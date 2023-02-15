@@ -8,7 +8,6 @@ export const modal = document.querySelector('#modal');
 export const perdidas = document.querySelectorAll('.perdidas');
 export const misets = document.querySelectorAll('.misets');
 export const internalMenu = document.querySelector('#internal_menu');
-export const selected = document.querySelector('#selected');
 export const datalist = document.querySelector('#dataList');
 export const datalistOptions = document.querySelector('#datalistOptions');
 export const myPieces = document.querySelectorAll('.mypieces');

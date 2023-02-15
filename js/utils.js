@@ -43,12 +43,10 @@ export function showSuccess(mensaje){
 
 export function createPaginator(actualPage = 1){
 
-    let firstPage;
+    let firstPage = actualPage - 2;;
 
-    if(actualPage === 1 || actualPage === 2){
-        firstPage = 1
-    }else{
-        firstPage = actualPage - 2;
+    if(firstPage < 1){
+        firstPage = 1;
     }
 
 
