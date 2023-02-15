@@ -15,7 +15,7 @@ export async function createMyPiecePage(selected = 1){
     coleccion.dataset.actualPage = selected;
     coleccion.dataset.type = 'pieces';
 
-    const resultadosPorPagina = 12;
+    const resultadosPorPagina = 8;
     let pieces = await endPoints.getAllUserParts(selected, resultadosPorPagina);
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 

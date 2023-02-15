@@ -11,7 +11,7 @@ export async function initLostPiecePage(){
 export async function createLostPiecePage( selected = 1){
     
     cleanContainer();
-    const resultadosPorPagina = 12;
+    const resultadosPorPagina = 8;
     let coleccion = document.querySelector('#coleccion');
     coleccion.dataset.actualPage = selected;
     coleccion.dataset.type = 'lostPieces';

@@ -9,7 +9,7 @@ export async function initSetPage(){
 
 export async function createSetPage(selected = 1){
     cleanContainer();
-    const resultadosPorPagina = 12;
+    const resultadosPorPagina = 8;
     let coleccion = document.querySelector('#coleccion');
     coleccion.dataset.actualPage = selected;
     coleccion.dataset.type = 'sets';
@@ -34,8 +34,16 @@ export async function createSetCard(set){
     let clon = template.cloneNode(true);
  
     //image
+    if(set.set_img_url != null){
+        
         clon.querySelector('img').src = set.set_img_url;
         clon.querySelector('img').alt = set.name;
+        
+    }else{
+        
+        clon.querySelector('img').src = "img/bloc.png";
+        
+    }
     //name
         clon.querySelector('.title').textContent = set.name;
     //year

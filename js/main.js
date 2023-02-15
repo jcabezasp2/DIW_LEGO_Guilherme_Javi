@@ -6,7 +6,7 @@ import * as personalFunctions from './lostPieces.js';
 import * as mySetsFunctions from './mySets.js';
 import * as myPiecesFunctions from './myPieces.js';
 //Ejemplo de llamada a un endpoint
-//console.log(await endPoints.getThemes(1, 10));
+//console.log(await endPoints.getThemes(1, 8));
 
 window.addEventListener('load', init);
 

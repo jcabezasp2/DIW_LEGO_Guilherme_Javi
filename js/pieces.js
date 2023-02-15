@@ -12,14 +12,14 @@ export async function initPiecePage(){
     });
 }
 
-export async function createPiecePage(selected = 10){
+export async function createPiecePage(selected = 1){
     cleanContainer();
 
     let coleccion = document.querySelector('#coleccion');
     coleccion.dataset.actualPage = selected;
     coleccion.dataset.type = 'pieces';
 
-    const resultadosPorPagina = 12;
+    const resultadosPorPagina = 8;
     let pieces = await endPoints.getPieces(selected, resultadosPorPagina);
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
@@ -45,10 +45,13 @@ export async function createPieceCard(piece){
 
         clon.querySelector('img').src = piece.part_img_url;
         clon.querySelector('img').alt = piece.name;
-        }else{
-        clon.querySelector('img').src = "img/pieza.png";
         
-        }
+    }else{
+       
+        clon.querySelector('img').src = "img/bloc.png";
+        
+        
+    }
     //name
         clon.querySelector('.title').textContent = piece.name;
     

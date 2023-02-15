@@ -9,7 +9,7 @@ export async function initMySetsPage(){
 
 export async function createMySetsPage(selected = 1){
     cleanContainer();
-    const resultadosPorPagina = 12;
+    const resultadosPorPagina = 8;
 
     let coleccion = document.querySelector('#coleccion');
     coleccion.dataset.actualPage = selected;
@@ -33,8 +33,14 @@ export async function createMySetCard( miset){
     let clon = template.cloneNode(true);
     console.log(miset)
     //image
-    clon.querySelector('img').src = miset.set.set_img_url;
-    clon.querySelector('img').alt = miset.set.name;
+    if(miset.set.set_img_url != null){
+
+        clon.querySelector('img').src = miset.set.set_img_url;
+        clon.querySelector('img').alt = miset.set.name;
+
+    }else{
+        clon.querySelector('img').src = "img/bloc.png";
+    }
     //name
     clon.querySelector('.title').textContent =  miset.set.name;
     //year
