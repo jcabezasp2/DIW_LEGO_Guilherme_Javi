@@ -172,3 +172,12 @@ export const deleteUserSet = async (id) => {
         return res.status;
     }
 
+// Funcion para obtener perfil de usuario
+export const getUserProfile = async () => {
+        const token = await getToken();
+        const res = await fetch(`https://rebrickable.com/api/v3/users/${token}/profile/?key=${key}`);
+        const user = await res.json();
+        return user;
+    }
+
+

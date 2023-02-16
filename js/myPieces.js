@@ -30,7 +30,6 @@ export async function createMyPiecePage(selected = 1){
 }
 
 export async function createPieceCard(piece){
-    console.log(piece)
     let template = document.querySelector('#card-set').content;
 
     let clon = template.cloneNode(true);

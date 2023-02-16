@@ -41,7 +41,7 @@ export async function createSetCard(set){
         
     }else{
         
-        clon.querySelector('img').src = "img/bloc.png";
+        clon.querySelector('img').src = "https://via.placeholder.com/150?text=Imagen%20de%20set%20no%20disponible";
         
     }
     //name

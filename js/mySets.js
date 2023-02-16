@@ -31,7 +31,7 @@ export async function createMySetsPage(selected = 1){
 export async function createMySetCard( miset){
     let template = document.querySelector('#card-set').content;
     let clon = template.cloneNode(true);
-    console.log(miset)
+
     //image
     if(miset.set.set_img_url != null){
 
@@ -39,7 +39,7 @@ export async function createMySetCard( miset){
         clon.querySelector('img').alt = miset.set.name;
 
     }else{
-        clon.querySelector('img').src = "img/bloc.png";
+        clon.querySelector('img').src = "https://via.placeholder.com/150?text=Imagen%20de%20set%20no%20disponible";
     }
     //name
     clon.querySelector('.title').textContent =  miset.set.name;
@@ -50,8 +50,22 @@ export async function createMySetCard( miset){
     //theme_id
     clon.querySelector('.theme_id').remove();     
     //btn
+    clon.querySelector('.anadir_set_coleccion').textContent = 'Eliminar de la colección';
 
-    let btn = clon.querySelector('.anadir_set_coleccion').textContent = 'Eliminar de la colección';
+    let btn = clon.querySelector('.anadir_set_coleccion');
+    btn.setAttribute('data-set_id', miset.set.set_num);
+    btn.addEventListener('click', async (event)=>{
+        let set_id = event.target.dataset.set_id;
+        let result = await endPoints.deleteUserSet(set_id);
+        if(result === false){
+            showError('Error al eliminar el set de la colección');
+        }else{
+            showSuccess('Set eliminado de la colección');
+            createMySetsPage();
+        }
+    });
+
+
 
     document.querySelector('#coleccion').appendChild(clon);
 }

@@ -7,9 +7,6 @@ export async function initPiecePage(){
     createPiecePage();
     createMenu();
     coleccion.dataset.selected = 'todos';
-    htmlConstants.selected.addEventListener('change', (event)=>{
-        coleccion.dataset.selected = event.target.value;
-    });
 }
 
 export async function createPiecePage(selected = 1){
@@ -48,7 +45,7 @@ export async function createPieceCard(piece){
         
     }else{
        
-        clon.querySelector('img').src = "img/bloc.png";
+        clon.querySelector('img').src = "https://via.placeholder.com/150?text=Imagen%20de%20pieza%20no%20disponible";
         
         
     }
