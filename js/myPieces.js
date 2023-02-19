@@ -5,6 +5,12 @@ import * as endPoints from './endPoints.js';
 
 export async function initMyPiecePage(){
     createMyPiecePage();
+
+    if(!htmlConstants.internalMenu.classList.contains('d-none')){
+        htmlConstants.internalMenu.classList.add('d-none');
+    }
+
+
     coleccion.dataset.selected = 'todos';
 }
 

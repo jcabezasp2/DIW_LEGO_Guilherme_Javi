@@ -1,10 +1,17 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, createMenu} from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
 export async function initMySetsPage(){
     createMySetsPage();
+    createMenu();
+    //El ordering funciona en el endpoint que te devuelve los sets,
+    //pero no en el que te devuelve los sets del usuario
+    //a pesar de que en la documentación de la API se especifica que sí
+    if(!htmlConstants.orderBy.parentNode.classList.contains('d-none')){
+        htmlConstants.orderBy.parentNode.classList.add('d-none');
+    }
 }
 
 export async function createMySetsPage(selected = 1){

@@ -64,8 +64,52 @@
 
     <main class="bg-warning mh-100 vh-100 p-3">
       <div id="internal_menu" class="p-3 d-none">
-        <input class="form-control" list="datalistOptions" id="dataList" placeholder="Escribe para buscar">
-        <datalist id="datalistOptions"></datalist>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="dataList">Tematica</label>
+            <input class="form-control" list="datalistOptions" id="dataList" placeholder="Escribe para buscar">
+            <datalist id="datalistOptions"></datalist>
+          </div>
+          <div class="col-12 col-md-6">
+            <label class="form-label" for="order">Ordenar por</label>
+            <select class="form-select" name="order" id="order">
+              <option value="" selected>Por defecto</option>
+              <option value="name">Nombre</option>
+              <option value="-name">Nombre inverso</option>
+              <option value="year">Año</option>
+              <option value="-year">Año inverso</option>
+              <option value="num_parts">Numero de piezas</option>
+              <option value="-num_parts">Numero de piezas inverso</option>
+            </select>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-12 col-md-6 col-xl-3">
+            <label class="form-label" for="txtAnio_minimo">Desde el año</label>
+            <input class="form-control" type="number" name="txtAnio_minimo" id="txtAnio_minimo" min="1949" max="2023" placeholder="1949">
+          </div>
+          <div class="col-12 col-md-6 col-xl-3">
+            <label class="form-label" for="txtAnio_maximo">Hasta el año</label>
+            <input class="form-control" type="number" name="txtAnio_maximo" id="txtAnio_maximo" min="1949" max="2023" placeholder="2023">
+          </div>
+          <!-- El numero minimo de piezas es cero, por que la base de datos tiene sets que no tienen piezas -->
+          <div class="col-12 col-md-6 col-xl-3">
+            <label class="form-label" for="txtPiezas_minimo">Desde el numero de piezas</label>
+            <input class="form-control" type="number" name="txtPiezas_minimo" id="txtPiezas_minimo" min="0" max="11695" placeholder="0">
+          </div>
+          <div class="col-12 col-md-6 col-xl-3">
+            <label class="form-label" for="txtPiezas_maximo">Hasta el numero de piezas</label>
+            <input class="form-control" type="number" name="txtPiezas_maximo" id="txtPiezas_maximo" min="0" max="11695" placeholder="11695">
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <button id="btnResetear" class="w-100 btn btn-outline-danger">Borrar</button>
+          </div>
+          <div class="col">
+            <button id="btnBuscar" class="w-100 btn btn-danger">Buscar</button>
+          </div>
+        </div>
       </div>
       <div id="contenedor" class="container p-3">
         <section class="mt-5 p-3">

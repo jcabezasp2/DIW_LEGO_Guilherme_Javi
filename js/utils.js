@@ -1,6 +1,8 @@
 import * as htmlConstants from './htmlConstants.js';
 import {createSetPage} from './sets.js';
 import {createPiecePage} from './pieces.js';
+import {createMySetsPage} from './mySets.js';
+import * as endPoints from './endPoints.js';
 
 export function cleanContainer(){
     
@@ -126,7 +128,10 @@ export function pageChanger(event){
            createPiecePage(page);
             break;
         case 'lost':
-            personalFunctions.createLostPiecePage(page);
+            createLostPiecePage(page); //TODO no implementado
+            break;
+        case 'mySets':
+            createMySetsPage();
             break;
         default:
             showError('Error al cambiar de página');
@@ -141,4 +146,65 @@ export async function datalistCharger(data){
         option.dataset.id = element.id;
         htmlConstants.datalistOptions.appendChild(option);
     });
+}
+
+export async function createMenu(){
+    resetMenu();
+    htmlConstants.internalMenu.classList.remove('d-none');
+    let themes = await endPoints.getAllThemes();
+    datalistCharger(themes);
+    htmlConstants.buttonFilter.addEventListener('click', ()=>{
+        let type = document.querySelector('#coleccion').dataset.type;
+        switch(type){
+            case 'sets':
+                createSetPage();
+                break;
+            case 'mySets':
+                createMySetsPage();
+                break;
+            default:
+                showError('Error al cambiar de página');
+        }
+    });
+
+    htmlConstants.buttonReset.addEventListener('click', resetMenu);
+}
+
+export function resetMenu(){
+    htmlConstants.datalist.value = '';
+    htmlConstants.since.value = '';
+    htmlConstants.until.value = '';
+    htmlConstants.minParts.value = '';
+    htmlConstants.maxParts.value = '';
+    htmlConstants.orderBy.value = '';
+}
+
+export function filtersData(){
+    console.log('entra')
+    let options = document.querySelectorAll('#datalistOptions option');
+    let theme_id = getRealValueFromDatalist(htmlConstants.datalist, options);
+    let min_year = htmlConstants.since.value;
+    let max_year = htmlConstants.until.value;
+    let min_parts = htmlConstants.minParts.value;
+    let max_parts = htmlConstants.maxParts.value;
+    let ordering = htmlConstants.orderBy.value
+    
+    let filters = `${theme_id? `&theme_id=${theme_id}`: ''}${min_year? `&min_year=${min_year}`: ''}${max_year? `&max_year=${max_year}`: ''}${min_parts? `&min_parts=${min_parts}`: ''}${max_parts? `&max_parts=${max_parts}`: ''}${ordering? `&ordering=${ordering}`: ''}`;
+
+    return filters;
+}
+
+function getRealValueFromDatalist(datalist, options){
+
+    let option;
+    options.forEach(element => {
+        if(element.value === datalist.value){
+            option = element;
+        }
+    });
+    if(!option){
+        return null;
+    }else{
+        return option.dataset.id;
+    }
 }

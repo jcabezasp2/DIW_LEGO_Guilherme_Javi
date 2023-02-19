@@ -5,7 +5,11 @@ import * as endPoints from './endPoints.js';
 
 export async function initPiecePage(){
     createPiecePage();
-    createMenu();
+
+    if(!htmlConstants.internalMenu.classList.contains('d-none')){
+        htmlConstants.internalMenu.classList.add('d-none');
+    }
+
     coleccion.dataset.selected = 'todos';
 }
 
@@ -66,10 +70,4 @@ export async function createPieceCard(piece){
         document.querySelector('#coleccion').appendChild(clon);
 } 
 
-
-async function createMenu(){
-    htmlConstants.internalMenu.classList.remove('d-none');
-    let themes = await endPoints.getAllThemes();
-    datalistCharger(themes);
-}
 

@@ -1,8 +1,9 @@
+import { filtersData } from "./utils.js";
 const key = 'd9a4c4eb34a74edecf0e9de8c380ee94';
 
 // Función para obtener los sets
 export const getSets = async (pagina, cantidad) => {
-    const res = await fetch(`https://rebrickable.com/api/v3/lego/sets/?page=${pagina}&page_size=${cantidad}&key=${key}`);
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/sets/?page=${pagina}&page_size=${cantidad}${filtersData()}&key=${key}`);
     if(!res.ok){
         return false;
     }else{
@@ -136,7 +137,7 @@ export const deleteLostPart = async (id) => {
 // Funcion para obtener todos los sets de un usuario
 export const getAllUserSets = async (pagina, cantidad) => {
         const token = await getToken();
-        const res = await fetch(`https://rebrickable.com/api/v3/users/${token}/sets/?page=${pagina}&page_size=${cantidad}&key=${key}`);
+        const res = await fetch(`https://rebrickable.com/api/v3/users/${token}/sets/?page=${pagina}&page_size=${cantidad}${filtersData()}&key=${key}`);
         const sets = await res.json();
         return sets;
     }

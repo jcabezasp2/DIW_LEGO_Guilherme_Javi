@@ -1,10 +1,14 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger} from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, createMenu} from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
 export async function initSetPage(){
     createSetPage();
+    createMenu();
+    if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
+        htmlConstants.orderBy.parentNode.classList.remove('d-none');
+    }
 }
 
 export async function createSetPage(selected = 1){
@@ -51,8 +55,14 @@ export async function createSetCard(set){
     //num_parts
         clon.querySelector('.num_parts').textContent = "Número de piezas: " + set.num_parts;
     //theme_id
+        let btnTheme = clon.querySelector('.theme_id');
         let themeName = await endPoints.getTheme(set.theme_id);
-        clon.querySelector('.theme_id').textContent = themeName.name;
+        btnTheme.textContent = themeName.name;
+        btnTheme.setAttribute('data-theme_id', set.theme_id);
+        btnTheme.addEventListener('click', async (event)=>{
+            htmlConstants.datalist.value = event.target.textContent;
+            createSetPage();
+        });
     //Boton añadir a la coleccion
         let btn = clon.querySelector('.anadir_set_coleccion');
 
@@ -70,3 +80,4 @@ export async function createSetCard(set){
 
         document.querySelector('#coleccion').appendChild(clon);
 }
+
