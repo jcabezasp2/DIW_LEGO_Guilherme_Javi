@@ -18,8 +18,17 @@ export function showError(mensaje){
     let div = document.createElement('div');
     div.setAttribute('role', 'alert');
     div.setAttribute('id', 'alert');
-    div.classList.add('alert', 'alert-danger', 'position-absolute', 'top-50', 'start-50', 'p-5');
-    div.textContent = mensaje;
+    div.classList.add('alert', 'alert-danger', 'position-absolute', 'top-50', 'w-50', 'p-5', 'fs-1');
+    let title = document.createElement('h4');
+    title.classList.add('alert-heading', 'text-center', 'fs-1');
+    title.textContent = '¡Error!';
+    div.appendChild(title);
+    let line = document.createElement('hr');
+    div.appendChild(line);
+    let text = document.createElement('p');
+    text.classList.add('text-center');
+    text.textContent = mensaje;
+    div.appendChild(text);
     htmlConstants.container.appendChild(div);
 
     setTimeout(()=>{
@@ -29,12 +38,20 @@ export function showError(mensaje){
 }
 
 export function showSuccess(mensaje){
-
     let div = document.createElement('div');
     div.setAttribute('role', 'alert');
     div.setAttribute('id', 'alert');
-    div.classList.add('alert', 'alert-success', 'position-absolute', 'top-50', 'start-50', 'p-5');
-    div.textContent = mensaje;
+    div.classList.add('alert', 'alert-success', 'position-absolute', 'top-50', 'w-50', 'p-5', 'fs-1');
+    let title = document.createElement('h4');
+    title.classList.add('alert-heading', 'text-center', 'fs-1');
+    title.textContent = '¡Éxito!';
+    div.appendChild(title);
+    let line = document.createElement('hr');
+    div.appendChild(line);
+    let text = document.createElement('p');
+    text.classList.add('text-center');
+    text.textContent = mensaje;
+    div.appendChild(text);
     htmlConstants.container.appendChild(div);
 
     setTimeout(()=>{

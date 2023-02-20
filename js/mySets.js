@@ -64,11 +64,12 @@ export async function createMySetCard( miset){
     btn.addEventListener('click', async (event)=>{
         let set_id = event.target.dataset.set_id;
         let result = await endPoints.deleteUserSet(set_id);
-        if(result === false){
-            showError('Error al eliminar el set de la colección');
-        }else{
-            showSuccess('Set eliminado de la colección');
+        console.log(result)
+        if(result === 204){
             createMySetsPage();
+            showSuccess('Set eliminado de la colección');
+        }else{
+            showError('Error al eliminar el set de la colección');
         }
     });
 
