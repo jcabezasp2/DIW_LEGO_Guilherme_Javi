@@ -24,14 +24,14 @@ export async function createMySetsPage(selected = 1){
 
     let misets = await endPoints.getAllUserSets(selected, resultadosPorPagina); 
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
-
+    let total = Math.ceil(misets.count / resultadosPorPagina);
     if( misets === false){
         showError('Error al obtener los sets');
     }else{
         misets.results.forEach( miset => {
             createMySetCard(miset);
         });
-        createPaginator(selected);
+        createPaginator(selected, total);
     }
 }
 

@@ -43,7 +43,7 @@ export function showSuccess(mensaje){
 
 }
 
-export function createPaginator(actualPage = 1){
+export function createPaginator(actualPage = 1, totalPages = 2){
 
     let firstPage = actualPage - 2;;
 
@@ -63,9 +63,10 @@ export function createPaginator(actualPage = 1){
             let previousLink = document.createElement('a');
             previousLink.classList.add('page-link');
             previousLink.dataset.page = 'previous';
-            if (actualPage === 1){
+            if (actualPage == 1){
                 previousLink.classList.add('disabled');
             }
+
             let previousIcon = document.createElement('i');
             previousIcon.classList.add('bi', 'bi-arrow-left-short');
             previousLink.appendChild(previousIcon);
@@ -73,8 +74,8 @@ export function createPaginator(actualPage = 1){
             previousLink.addEventListener('click', pageChanger);
             listPrevious.appendChild(previousLink);
             list.appendChild(listPrevious);
-            //TODO tener en cuenta el numero de paginas que hay
-        for(let i = firstPage; i < firstPage + 5; i++){
+            
+        for(let i = firstPage; i < firstPage + 5 && i <= totalPages; i++){
             let listItem = document.createElement('li');
             listItem.classList.add('page-item');
             let link = document.createElement('a');
@@ -100,6 +101,9 @@ export function createPaginator(actualPage = 1){
             nextLink.appendChild(nextIcon);
             nextLink.href = '#';
             nextLink.addEventListener('click', pageChanger);
+            if(actualPage == totalPages){
+                nextLink.classList.add('disabled');
+            }   
             listNext.appendChild(nextLink);
             list.appendChild(listNext);
 
@@ -180,7 +184,7 @@ export function resetMenu(){
 }
 
 export function filtersData(){
-    console.log('entra')
+    
     let options = document.querySelectorAll('#datalistOptions option');
     let theme_id = getRealValueFromDatalist(htmlConstants.datalist, options);
     let min_year = htmlConstants.since.value;

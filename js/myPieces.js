@@ -24,14 +24,14 @@ export async function createMyPiecePage(selected = 1){
     const resultadosPorPagina = 8;
     let pieces = await endPoints.getAllUserParts(selected, resultadosPorPagina);
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
-
+    let total = Math.ceil(pieces.count / resultadosPorPagina);
     if(pieces === false){
         showError('Error al obtener las piezas');
     }else{
         pieces.results.forEach(piece => {
             createPieceCard(piece);
         });
-        createPaginator(selected);
+        createPaginator(selected, total);
     }
 }
 
