@@ -5,7 +5,7 @@ import * as endPoints from './endPoints.js';
 
 export async function initMyPiecePage(){
     createMyPiecePage();
-    createMenu('pieces');
+    htmlConstants.accordion.classList.add('d-none');
     breadCrumbController('Mis piezas');
     if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
         htmlConstants.orderBy.parentNode.classList.remove('d-none');

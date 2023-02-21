@@ -153,7 +153,10 @@ export function pageChanger(event){
             createLostPiecePage(page); //TODO no implementado
             break;
         case 'mySets':
-            createMySetsPage();
+            createMySetsPage(page);
+            break;
+        case 'myPieces':
+            createMyPiecePage(page);
             break;
         default:
             showError('Error al cambiar de página');
