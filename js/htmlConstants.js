@@ -11,6 +11,8 @@ export const internalMenu = document.querySelector('#internal_menu');
 export const datalistOptions = document.querySelector('#datalistOptions');
 export const myPieces = document.querySelectorAll('.mypieces');
 export const datalistTitle = document.querySelector('#datalistTitle');
+export const breadCrumb = document.querySelector('.breadcrumb');
+export const breadCrumbHome = document.querySelector('#breadcrumb-home');
 
 // Filtros Sets
 export const datalist = document.querySelector('#dataList');

@@ -1,4 +1,4 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, createMenu} from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, createMenu, breadCrumbController} from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
@@ -6,6 +6,7 @@ import * as endPoints from './endPoints.js';
 export async function initSetPage(){
     createSetPage();
     createMenu('sets');
+    breadCrumbController('sets');
     if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
         htmlConstants.orderBy.parentNode.classList.remove('d-none');
     }

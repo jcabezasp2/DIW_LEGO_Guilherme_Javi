@@ -249,3 +249,25 @@ function getRealValueFromDatalist(datalist, options){
         return option.dataset.id;
     }
 }
+
+export function breadCrumbController(position){
+    if(htmlConstants.breadCrumb.querySelector('#current')){
+        htmlConstants.breadCrumb.querySelector('#current').textContent = position;
+    }else{
+    htmlConstants.breadCrumbHome.classList.remove('active');
+    htmlConstants.breadCrumbHome.textContent = '';
+    let home = document.createElement('a');
+    home.href = '#';
+    home.textContent = 'Inicio';
+    home.addEventListener('click', ()=>{
+        location.reload();
+    });
+    htmlConstants.breadCrumbHome.appendChild(home);
+    let current = document.createElement('li');
+    current.setAttribute('aria-current', 'page');
+    current.setAttribute('id', 'current');
+    current.classList.add('breadcrumb-item', 'active');
+    current.textContent = position;
+    htmlConstants.breadCrumb.appendChild(current);
+    }
+}
