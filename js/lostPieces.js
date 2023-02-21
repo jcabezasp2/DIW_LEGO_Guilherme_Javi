@@ -7,7 +7,7 @@ import { initPiecePage } from './pieces.js';
 export async function initLostPiecePage(){
     createLostPiecePage();
 
-    if(!htmlConstants.internalMenu.classList.contains('d-none')){
+    if(!htmlConstants.accordion.classList.contains('d-none')){
         htmlConstants.internalMenu.classList.add('d-none');
     }
 

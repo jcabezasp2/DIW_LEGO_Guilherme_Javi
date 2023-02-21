@@ -64,57 +64,89 @@
       </nav>
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li id="breadcrumb-home" class="breadcrumb-item active" aria-current="page">Home</li>
+          <li id="breadcrumb-home" class="breadcrumb-item active" aria-current="page">Inicio</li>
         </ol>
       </nav>
     </header>
-
+    <!--Se ha optado por poner un accordion por estetica
+        pero aunque esten separadas y tengan sus propios botones de busqueda,
+        funcionan de manera conjunta.
+        No es un error es una funcionalidad-->
     <main class="p-3 flex-grow-1">
-      <div id="internal_menu" class="p-3 d-none">
-        <div class="row">
-          <div class="col-12 col-md-6">
-            <label id="datalistTitle" class="form-label" for="dataList"></label>
-            <input class="form-control" list="datalistOptions" id="dataList" placeholder="Escribe para buscar">
-            <datalist id="datalistOptions"></datalist>
-          </div>
-          <div class="col-12 col-md-6">
-            <label class="form-label" for="order">Ordenar por</label>
-            <select class="form-select" name="order" id="order">
-              <option value="" selected>Por defecto</option>
-              <option value="name">Nombre</option>
-              <option value="-name">Nombre inverso</option>
-              <option class="forSets" value="year">Año</option>
-              <option class="forSets" value="-year">Año inverso</option>
-              <option class="forSets" value="num_parts">Numero de piezas</option>
-              <option class="forSets" value="-num_parts">Numero de piezas inverso</option>
-            </select>
+      <div class="accordion accordion-flush d-none" id="accordionFlush">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+              Busqueda
+            </button>
+          </h2>
+          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div class="input-group mb-3">
+                <input id="txtsearch" type="text" class="form-control" placeholder="Texto a buscar" aria-label="Texto a busca" aria-describedby="button-addon2">
+                <button class="btn btn-danger" type="button" id="btnsearch">Buscar</button>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="row mt-3 forSets">
-          <div class="col-12 col-md-6 col-xl-3">
-            <label class="form-label" for="txtAnio_minimo">Desde el año</label>
-            <input class="form-control" type="number" name="txtAnio_minimo" id="txtAnio_minimo" min="1949" max="2023" placeholder="1949">
-          </div>
-          <div class="col-12 col-md-6 col-xl-3">
-            <label class="form-label" for="txtAnio_maximo">Hasta el año</label>
-            <input class="form-control" type="number" name="txtAnio_maximo" id="txtAnio_maximo" min="1949" max="2023" placeholder="2023">
-          </div>
-          <!-- El numero minimo de piezas es cero, por que la base de datos tiene sets que no tienen piezas -->
-          <div class="col-12 col-md-6 col-xl-3">
-            <label class="form-label" for="txtPiezas_minimo">Desde el numero de piezas</label>
-            <input class="form-control" type="number" name="txtPiezas_minimo" id="txtPiezas_minimo" min="0" max="11695" placeholder="0">
-          </div>
-          <div class="col-12 col-md-6 col-xl-3">
-            <label class="form-label" for="txtPiezas_maximo">Hasta el numero de piezas</label>
-            <input class="form-control" type="number" name="txtPiezas_maximo" id="txtPiezas_maximo" min="0" max="11695" placeholder="11695">
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col">
-            <button id="btnResetear" class="w-100 btn btn-outline-danger">Borrar</button>
-          </div>
-          <div class="col">
-            <button id="btnBuscar" class="w-100 btn btn-danger">Buscar</button>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+              Filtrado
+            </button>
+          </h2>
+          <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+            <div class="accordion-body">
+              <div id="internal_menu" class="p-3">
+                <div class="row">
+                  <div class="col-12 col-md-6">
+                    <label id="datalistTitle" class="form-label" for="dataList"></label>
+                    <input class="form-control" list="datalistOptions" id="dataList" placeholder="Escribe para buscar">
+                    <datalist id="datalistOptions"></datalist>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <label class="form-label" for="order">Ordenar por</label>
+                    <select class="form-select" name="order" id="order">
+                      <option value="" selected>Por defecto</option>
+                      <option value="name">Nombre</option>
+                      <option value="-name">Nombre inverso</option>
+                      <option class="forSets" value="year">Año</option>
+                      <option class="forSets" value="-year">Año inverso</option>
+                      <option class="forSets" value="num_parts">Numero de piezas</option>
+                      <option class="forSets" value="-num_parts">Numero de piezas inverso</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row mt-3 forSets">
+                  <div class="col-12 col-md-6 col-xl-3">
+                    <label class="form-label" for="txtAnio_minimo">Desde el año</label>
+                    <input class="form-control" type="number" name="txtAnio_minimo" id="txtAnio_minimo" min="1949" max="2023" placeholder="1949">
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-3">
+                    <label class="form-label" for="txtAnio_maximo">Hasta el año</label>
+                    <input class="form-control" type="number" name="txtAnio_maximo" id="txtAnio_maximo" min="1949" max="2023" placeholder="2023">
+                  </div>
+                  <!-- El numero minimo de piezas es cero, por que la base de datos tiene sets que no tienen piezas -->
+                  <div class="col-12 col-md-6 col-xl-3">
+                    <label class="form-label" for="txtPiezas_minimo">Desde el numero de piezas</label>
+                    <input class="form-control" type="number" name="txtPiezas_minimo" id="txtPiezas_minimo" min="0" max="11695" placeholder="0">
+                  </div>
+                  <div class="col-12 col-md-6 col-xl-3">
+                    <label class="form-label" for="txtPiezas_maximo">Hasta el numero de piezas</label>
+                    <input class="form-control" type="number" name="txtPiezas_maximo" id="txtPiezas_maximo" min="0" max="11695" placeholder="11695">
+                  </div>
+                </div>
+                <div class="row mt-3">
+                  <div class="col">
+                    <button id="btnResetear" class="w-100 btn btn-outline-danger">Borrar</button>
+                  </div>
+                  <div class="col">
+                    <button id="btnBuscar" class="w-100 btn btn-danger">Buscar</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>

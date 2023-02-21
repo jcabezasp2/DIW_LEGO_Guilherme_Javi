@@ -172,7 +172,7 @@ export async function datalistCharger(data){
 
 export async function createMenu(tipo){
     resetMenu();
-    htmlConstants.internalMenu.classList.remove('d-none');
+    htmlConstants.accordion.classList.remove('d-none');
     let datalistOptions;
     if(tipo === 'sets'){
         htmlConstants.datalistTitle.textContent = 'Tema';
@@ -188,27 +188,6 @@ export async function createMenu(tipo){
         datalistOptions = await endPoints.getAllCategories();
     }
     datalistCharger(datalistOptions);
-    htmlConstants.buttonFilter.addEventListener('click', ()=>{
-        let type = document.querySelector('#coleccion').dataset.type;
-        switch(type){
-            case 'sets':
-                createSetPage();
-                break;
-            case 'mySets':
-                createMySetsPage();
-                break;
-            case 'pieces':
-                createPiecePage();
-                break;
-            case 'myPieces':
-                createMyPiecePage();
-                break;
-            default:
-                showError('Error al cambiar de página');
-        }
-    });
-
-    htmlConstants.buttonReset.addEventListener('click', resetMenu);
 }
 
 export function resetMenu(){
@@ -218,6 +197,7 @@ export function resetMenu(){
     htmlConstants.minParts.value = '';
     htmlConstants.maxParts.value = '';
     htmlConstants.orderBy.value = '';
+    htmlConstants.txtsearch.value = '';
 }
 
 export function filtersData(){
@@ -229,8 +209,9 @@ export function filtersData(){
     let min_parts = htmlConstants.minParts.value;
     let max_parts = htmlConstants.maxParts.value;
     let ordering = htmlConstants.orderBy.value
-    
-    let filters = `${theme_id? `&theme_id=${theme_id}`: ''}${min_year? `&min_year=${min_year}`: ''}${max_year? `&max_year=${max_year}`: ''}${min_parts? `&min_parts=${min_parts}`: ''}${max_parts? `&max_parts=${max_parts}`: ''}${ordering? `&ordering=${ordering}`: ''}`;
+    let search = htmlConstants.txtsearch.value;
+
+    let filters = `${theme_id? `&theme_id=${theme_id}`: ''}${min_year? `&min_year=${min_year}`: ''}${max_year? `&max_year=${max_year}`: ''}${min_parts? `&min_parts=${min_parts}`: ''}${max_parts? `&max_parts=${max_parts}`: ''}${ordering? `&ordering=${ordering}`: ''}${search? `&search=${search}`: ''}`;
 
     return filters;
 }

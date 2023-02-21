@@ -8,7 +8,7 @@ export async function initSetPage(){
     createMenu('sets');
     breadCrumbController('sets');
     if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
-        htmlConstants.orderBy.parentNode.classList.remove('d-none');
+        htmlConstants.orderBy.parentNode.remove('d-none');
     }
 }
 

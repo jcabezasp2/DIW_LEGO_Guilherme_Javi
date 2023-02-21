@@ -13,8 +13,12 @@ export const myPieces = document.querySelectorAll('.mypieces');
 export const datalistTitle = document.querySelector('#datalistTitle');
 export const breadCrumb = document.querySelector('.breadcrumb');
 export const breadCrumbHome = document.querySelector('#breadcrumb-home');
+export const accordion = document.querySelector('#accordionFlush');
+export const firstAccordionHeader = document.querySelector('#flush-headingOne');
+export const secondAccordionHeader = document.querySelector('#flush-headingTwo');
 
-// Filtros Sets
+
+// Filtros
 export const datalist = document.querySelector('#dataList');
 export const orderBy = document.querySelector('#order');
 export const since = document.querySelector('#txtAnio_minimo');
@@ -23,3 +27,7 @@ export const minParts = document.querySelector('#txtPiezas_minimo');
 export const maxParts = document.querySelector('#txtPiezas_maximo');
 export const buttonReset = document.querySelector('#btnResetear');
 export const buttonFilter = document.querySelector('#btnBuscar');
+
+// Buscador
+export const txtsearch = document.querySelector('#txtsearch');
+export const btnsearch = document.querySelector('#btnsearch');

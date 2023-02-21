@@ -40,5 +40,38 @@ function init(){
         myPieces.addEventListener('click', myPiecesFunctions.initMyPiecePage);
     });
 
+    htmlConstants.buttonFilter.addEventListener('click', filterOrSearch);
+
+    htmlConstants.buttonReset.addEventListener('click', ()=>{
+        htmlConstants.datalist.value = '';
+        htmlConstants.since.value = '';
+        htmlConstants.until.value = '';
+        htmlConstants.minParts.value = '';
+        htmlConstants.maxParts.value = '';
+        htmlConstants.orderBy.value = '';
+    });
+
+    htmlConstants.btnsearch.addEventListener('click', filterOrSearch);
+
+    function filterOrSearch(){
+        let type = document.querySelector('#coleccion').dataset.type;
+
+        switch(type){
+            case 'sets':
+                setsFunctions.createSetPage();
+                break;
+            case 'mySets':
+                mySetsFunctions.createMySetsPage();
+                break;
+            case 'pieces':
+                piecesFunctions.createPiecePage();
+                break;
+            case 'myPieces':
+                myPiecesFunctions.createMyPiecePage();
+                break;
+            default:
+                showError('Error al cambiar de página');
+        }
+    }
 }
 
