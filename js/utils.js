@@ -2,6 +2,7 @@ import * as htmlConstants from './htmlConstants.js';
 import {createSetPage} from './sets.js';
 import {createPiecePage} from './pieces.js';
 import {createMySetsPage} from './mySets.js';
+import {createMyPiecePage} from './myPieces.js';
 import * as endPoints from './endPoints.js';
 
 export function cleanContainer(){
@@ -169,11 +170,24 @@ export async function datalistCharger(data){
     });
 }
 
-export async function createMenu(){
+export async function createMenu(tipo){
     resetMenu();
     htmlConstants.internalMenu.classList.remove('d-none');
-    let themes = await endPoints.getAllThemes();
-    datalistCharger(themes);
+    let datalistOptions;
+    if(tipo === 'sets'){
+        htmlConstants.datalistTitle.textContent = 'Tema';
+        document.querySelectorAll('.forSets').forEach(element => {
+            element.classList.remove('d-none');
+        });
+        datalistOptions = await endPoints.getAllThemes();
+    }else{
+        htmlConstants.datalistTitle.textContent = 'Categoría';
+        document.querySelectorAll('.forSets').forEach(element => {
+            element.classList.add('d-none');
+        });
+        datalistOptions = await endPoints.getAllCategories();
+    }
+    datalistCharger(datalistOptions);
     htmlConstants.buttonFilter.addEventListener('click', ()=>{
         let type = document.querySelector('#coleccion').dataset.type;
         switch(type){
@@ -182,6 +196,12 @@ export async function createMenu(){
                 break;
             case 'mySets':
                 createMySetsPage();
+                break;
+            case 'pieces':
+                createPiecePage();
+                break;
+            case 'myPieces':
+                createMyPiecePage();
                 break;
             default:
                 showError('Error al cambiar de página');

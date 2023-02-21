@@ -1,15 +1,14 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, datalistCharger } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, datalistCharger, createMenu } from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
 export async function initPiecePage(){
     createPiecePage();
-
-    if(!htmlConstants.internalMenu.classList.contains('d-none')){
-        htmlConstants.internalMenu.classList.add('d-none');
+    createMenu('pieces');
+    if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
+        htmlConstants.orderBy.parentNode.classList.remove('d-none');
     }
-
     coleccion.dataset.selected = 'todos';
 }
 

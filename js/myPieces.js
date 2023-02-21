@@ -1,13 +1,13 @@
-import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, datalistCharger } from "./utils.js";
+import { cleanContainer, showSuccess, showError, createPaginator, pageChanger, datalistCharger, createMenu  } from "./utils.js";
 import * as htmlConstants from './htmlConstants.js';
 import * as endPoints from './endPoints.js';
 
 
 export async function initMyPiecePage(){
     createMyPiecePage();
-
-    if(!htmlConstants.internalMenu.classList.contains('d-none')){
-        htmlConstants.internalMenu.classList.add('d-none');
+    createMenu('pieces');
+    if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
+        htmlConstants.orderBy.parentNode.classList.remove('d-none');
     }
 
 
@@ -19,7 +19,7 @@ export async function createMyPiecePage(selected = 1){
 
     let coleccion = document.querySelector('#coleccion');
     coleccion.dataset.actualPage = selected;
-    coleccion.dataset.type = 'pieces';
+    coleccion.dataset.type = 'myPieces';
 
     const resultadosPorPagina = 8;
     let pieces = await endPoints.getAllUserParts(selected, resultadosPorPagina);
@@ -55,6 +55,7 @@ export async function createPieceCard(piece){
         let btn = clon.querySelector('.anadir_set_coleccion');
         btn.setAttribute('data-part_num', piece.part.external_ids.BrickLink[0]);
         btn.textContent = 'Perdida';
+        btn.classList.add('d-none');
         btn.addEventListener('click', async (event)=>{
             event.preventDefault();
             console.log(event.target.dataset.part_num)

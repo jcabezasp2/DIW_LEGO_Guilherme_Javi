@@ -5,7 +5,7 @@ import * as endPoints from './endPoints.js';
 
 export async function initMySetsPage(){
     createMySetsPage();
-    createMenu();
+    createMenu('sets');
     //El ordering funciona en el endpoint que te devuelve los sets,
     //pero no en el que te devuelve los sets del usuario
     //a pesar de que en la documentación de la API se especifica que sí

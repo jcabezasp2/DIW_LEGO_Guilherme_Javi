@@ -47,7 +47,7 @@
                   src="img/pieza.png" alt="Logo" width="55" height="40" class="d-inline-block align-text-top">
                 PIEZAS</a></li>
 
-            <li class="nav-item"><a class="nav-link fw-bold text-light fs-4 p-2 perdidas" href="#"><img
+            <li class="nav-item d-none"><a class="nav-link fw-bold text-light fs-4 p-2 perdidas" href="#"><img
                   src="img/perdidas.png" alt="Logo" width="30" height="40" class="d-inline-block align-text-top"> PIEZAS
                 PERDIDAS</a></li>
 
@@ -68,7 +68,7 @@
       <div id="internal_menu" class="p-3 d-none">
         <div class="row">
           <div class="col-12 col-md-6">
-            <label class="form-label" for="dataList">Tematica</label>
+            <label id="datalistTitle" class="form-label" for="dataList"></label>
             <input class="form-control" list="datalistOptions" id="dataList" placeholder="Escribe para buscar">
             <datalist id="datalistOptions"></datalist>
           </div>
@@ -78,14 +78,14 @@
               <option value="" selected>Por defecto</option>
               <option value="name">Nombre</option>
               <option value="-name">Nombre inverso</option>
-              <option value="year">Año</option>
-              <option value="-year">Año inverso</option>
-              <option value="num_parts">Numero de piezas</option>
-              <option value="-num_parts">Numero de piezas inverso</option>
+              <option class="forSets" value="year">Año</option>
+              <option class="forSets" value="-year">Año inverso</option>
+              <option class="forSets" value="num_parts">Numero de piezas</option>
+              <option class="forSets" value="-num_parts">Numero de piezas inverso</option>
             </select>
           </div>
         </div>
-        <div class="row mt-3">
+        <div class="row mt-3 forSets">
           <div class="col-12 col-md-6 col-xl-3">
             <label class="form-label" for="txtAnio_minimo">Desde el año</label>
             <input class="form-control" type="number" name="txtAnio_minimo" id="txtAnio_minimo" min="1949" max="2023" placeholder="1949">
@@ -140,7 +140,7 @@
               </div>
             </div>
 
-            <div class="card border border-dark  border-3" style="width: 18rem;">
+            <div class="card border border-dark  border-3 d-none" style="width: 18rem;">
               <img src="img/perdio.png" class="card-img-top p-4" alt="...">
               <div class="card-body d-flex align-content-end flex-wrap">
                 <h5 class="card-title text-center">Pierzas perdidas</h5>

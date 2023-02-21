@@ -14,7 +14,7 @@ export const getSets = async (pagina, cantidad) => {
 
 // Funcion para obtener las piezas
 export const getPieces = async (pagina, cantidad) => {
-    const res = await fetch(`https://rebrickable.com/api/v3/lego/parts/?page=${pagina}&page_size=${cantidad}&key=${key}`);
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/parts/?page=${pagina}&page_size=${cantidad}${filtersData()}&key=${key}`);
     if(!res.ok){
         return false;
     }else{
@@ -57,6 +57,14 @@ export const getAllThemes = async () => {
     const theme = await res.json();
     return theme;
 }
+
+// Funcion para obtener todas las categorias
+export const getAllCategories = async () => {
+    const res = await fetch(`https://rebrickable.com/api/v3/lego/part_categories/?key=${key}`);
+    const categories = await res.json();
+    return categories;
+}
+
 
 // Funcion para obtener un tema
 export const getTheme = async (id) => {

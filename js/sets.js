@@ -5,7 +5,7 @@ import * as endPoints from './endPoints.js';
 
 export async function initSetPage(){
     createSetPage();
-    createMenu();
+    createMenu('sets');
     if(htmlConstants.orderBy.parentNode.classList.contains('d-none')){
         htmlConstants.orderBy.parentNode.classList.remove('d-none');
     }

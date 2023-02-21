@@ -10,6 +10,7 @@ export const misets = document.querySelectorAll('.misets');
 export const internalMenu = document.querySelector('#internal_menu');
 export const datalistOptions = document.querySelector('#datalistOptions');
 export const myPieces = document.querySelectorAll('.mypieces');
+export const datalistTitle = document.querySelector('#datalistTitle');
 
 // Filtros Sets
 export const datalist = document.querySelector('#dataList');
