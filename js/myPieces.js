@@ -42,8 +42,19 @@ export async function createPieceCard(piece){
     let clon = template.cloneNode(true);
 
     //image
+
+    if(piece.part.part_img_url != null){
+
         clon.querySelector('img').src = piece.part.part_img_url;
         clon.querySelector('img').alt = piece.part.name;
+
+    }else{
+
+        clon.querySelector('img').src = "https://via.placeholder.com/150?text=Imagen%20de%20pieza%20no%20disponible";
+
+    }
+
+
     //name
         clon.querySelector('.title').textContent = piece.part.name;
     
