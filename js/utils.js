@@ -270,7 +270,9 @@ export function breadCrumbController(position){
     let current = document.createElement('li');
     current.setAttribute('aria-current', 'page');
     current.setAttribute('id', 'current');
-    current.classList.add('breadcrumb-item', 'active');
+    current.classList.add('breadcrumb-item', 'active' , 'text-dark' , 'fs-4' , 'bg-warning' , 'rounded-end' , 'p-2');
+    htmlConstants.breadCrumbHome.classList.add('rounded-start');
+    htmlConstants.breadCrumbHome.classList.remove('rounded');
     current.textContent = position;
     htmlConstants.breadCrumb.appendChild(current);
     }
