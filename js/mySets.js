@@ -5,7 +5,7 @@ import * as endPoints from './endPoints.js';
 
 export async function initMySetsPage(){
     createMySetsPage();
-    createMenu('sets');
+    createMenu('misets');
     breadCrumbController('Mis sets');
     //El ordering funciona en el endpoint que te devuelve los sets,
     //pero no en el que te devuelve los sets del usuario
@@ -25,10 +25,15 @@ export async function createMySetsPage(selected = 1){
 
     let misets = await endPoints.getAllUserSets(selected, resultadosPorPagina); 
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
-    let total = Math.ceil(misets.count / resultadosPorPagina);
+   
     if( misets === false){
         showError('Error al obtener los sets');
+
+    }if(misets === null){
+        showError('No hay sets con esos parametros');
+
     }else{
+        let total = Math.ceil(misets.count / resultadosPorPagina);
         misets.results.forEach( miset => {
             createMySetCard(miset);
         });
@@ -65,7 +70,6 @@ export async function createMySetCard( miset){
     btn.addEventListener('click', async (event)=>{
         let set_id = event.target.dataset.set_id;
         let result = await endPoints.deleteUserSet(set_id);
-        console.log(result)
         if(result === 204){
             createMySetsPage();
             showSuccess('Set eliminado de la colección');

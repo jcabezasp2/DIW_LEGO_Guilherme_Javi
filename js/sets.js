@@ -19,12 +19,17 @@ export async function createSetPage(selected = 1){
     coleccion.dataset.actualPage = selected;
     coleccion.dataset.type = 'sets';
     let sets = await endPoints.getSets(selected, resultadosPorPagina);
-    let total = Math.ceil(sets.count / resultadosPorPagina);
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
 
     if(sets === false){
         showError('Error al obtener los sets');
+
+    }if(sets === null){
+        showError('No hay sets con esos parametros');
+
     }else{
+        let total = Math.ceil(sets.count / resultadosPorPagina);
+        
         sets.results.forEach(set => {
             createSetCard(set);
         });

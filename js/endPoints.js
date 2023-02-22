@@ -8,7 +8,16 @@ export const getSets = async (pagina, cantidad) => {
         return false;
     }else{
         const set = await res.json();
-        return set;
+
+        if(set.count == 0){
+            return null;
+
+        }else{
+
+            return set;
+            
+
+        }
     }
 }
 
@@ -19,7 +28,15 @@ export const getPieces = async (pagina, cantidad) => {
         return false;
     }else{
         const piece = await res.json();
+
+        if(piece.count == 0){
+            return null;
+
+        }else{
+            
         return piece;
+
+        }
     }
 }
 
@@ -147,7 +164,15 @@ export const getAllUserSets = async (pagina, cantidad) => {
         const token = await getToken();
         const res = await fetch(`https://rebrickable.com/api/v3/users/${token}/sets/?page=${pagina}&page_size=${cantidad}${filtersData()}&key=${key}`);
         const sets = await res.json();
+        
+        if(sets.count == 0){
+            return null;
+
+        }else{
+          
         return sets;
+        }
+        
     }
 
 // Funcion para añadir un set a un usuario

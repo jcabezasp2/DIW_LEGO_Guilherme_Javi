@@ -23,10 +23,14 @@ export async function createPiecePage(selected = 1){
     const resultadosPorPagina = 8;
     let pieces = await endPoints.getPieces(selected, resultadosPorPagina);
     coleccion.classList.add('row', 'row-cols-2', 'row-cols-md-3', 'row-cols-lg-4', 'g-2');
-    let total = Math.ceil(pieces.count/ resultadosPorPagina);
     if(pieces === false){
         showError('Error al obtener las piezas');
+
+    }if(pieces === null){
+        showError('No hay piezas con esos parametros');
+
     }else{
+        let total = Math.ceil(pieces.count/ resultadosPorPagina);
         pieces.results.forEach(piece => {
             createPieceCard(piece);
         });

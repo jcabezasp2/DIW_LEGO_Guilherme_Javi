@@ -11,7 +11,7 @@ export function cleanContainer(){
     let div = document.createElement('div');
     div.setAttribute('id', 'coleccion');
     htmlConstants.container.appendChild(div);
-
+    
 }
 
 export function showError(mensaje){
@@ -136,12 +136,20 @@ export function pageChanger(event){
     let actual = document.querySelector('#coleccion').dataset.actualPage;
     let type = document.querySelector('#coleccion').dataset.type;
     let page = this.dataset.page;
+    let des = document.querySelectorAll('.scale-in-center');
+    des.forEach(element => {
+        element.classList.remove('scale-in-center');
+        element.classList.add('scale-out-center');
+    
+    });
+
     if(page === 'previous'){
         page = parseInt(actual) - 1;
     }else if(page === 'next'){
         page = parseInt(actual) + 1;
     }
 
+    setTimeout(()=>{
     switch(type){
         case 'sets':
             createSetPage(page);
@@ -161,6 +169,9 @@ export function pageChanger(event){
         default:
             showError('Error al cambiar de página');
     }
+
+    }, 900);
+
 }
 
 export async function datalistCharger(data){
@@ -178,11 +189,20 @@ export async function createMenu(tipo){
     htmlConstants.accordion.classList.remove('d-none');
     let datalistOptions;
     if(tipo === 'sets'){
+        htmlConstants.orderBy.parentNode.classList.remove('d-none');
         htmlConstants.datalistTitle.textContent = 'Tema';
         document.querySelectorAll('.forSets').forEach(element => {
             element.classList.remove('d-none');
         });
         datalistOptions = await endPoints.getAllThemes();
+    }else if(tipo === 'misets'){
+        htmlConstants.datalistTitle.textContent = 'Tema';
+        document.querySelectorAll('.forSets').forEach(element => {
+            element.classList.remove('d-none');
+        });
+        datalistOptions = await endPoints.getAllThemes();
+    
+    
     }else{
         htmlConstants.datalistTitle.textContent = 'Categoría';
         document.querySelectorAll('.forSets').forEach(element => {
